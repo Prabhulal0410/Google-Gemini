@@ -1,9 +1,10 @@
+import Sidebar from "./components/Sidebar/Sidebar"
 
 function App() {
 
   return (
     <>
-      <p>Google-Gemini</p>
+      <Sidebar/>
     </>
   )
 }
