@@ -1,57 +1,90 @@
-.sidebar{
-    min-height: 100vh;
-    display: inline-flex;
-    flex-direction: column;
-    justify-content: space-between;
-    background-color: #f0f4f9;
-    padding: 25px 15px;
+.sidebar {
+  width: 70px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #f0f4f9;
+  padding: 25px 15px;
+  transition: width 0.3s ease;
+  overflow: hidden;
 }
-.sidebar img{
-    width: 20px;
+
+/* EXPANDED */
+.sidebar.extended {
+  width: 250px;
 }
-.sidebar .menu{
-    display: block;
-    margin-left: 10px;
-    cursor: pointer;
+
+/* ICONS */
+.sidebar img {
+  width: 24px;
 }
-.sidebar .new-chat{
-    margin-top: 20px;
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 10px 15px;
-    background-color: #e6eaf1;
-    border-radius: 50px;
-    font-size: 14px;
-    color: gray;
-    cursor: pointer;
+
+/* MENU ICON */
+.sidebar .menu {
+  margin-left: 10px;
+  cursor: pointer;
 }
-.sidebar .recent{
-    display: flex;
-    flex-direction: column;
+
+/* NEW CHAT */
+.sidebar .new-chat {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  background-color: #e6eaf1;
+  border-radius: 50px;
+  font-size: 14px;
+  color: gray;
+  cursor: pointer;
 }
-.sidebar .recent-title{
-    margin-top: 30px;
-    margin-bottom: 20px;
+
+/* RECENT */
+.sidebar .recent {
+  display: flex;
+  flex-direction: column;
 }
-.sidebar .recent-entry{
-    display: flex;
-    align-items: start;
-    gap: 10px;
-    padding: 10px;
-    padding-right: 40px;
-    border-radius: 50px;
-    color: #282828;
-    cursor: pointer;
+
+.sidebar .recent-title {
+  margin-top: 30px;
+  margin-bottom: 20px;
 }
-.sidebar .recent-entry:hover{
-    background-color: #e2e6eb;
+
+/* ITEMS */
+.sidebar .recent-entry {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 7px;
+  border-radius: 50px;
+  cursor: pointer;
 }
-.sidebar .bottom{
-    display: flex;
-    flex-direction: column;
+/* Hide message icon when sidebar is collapsed */
+.sidebar:not(.extended) .recent .recent-entry img {
+  display: none;
 }
-.sidebar .bottom-item{
-    padding-right: 10px;
-    cursor: pointer;
+
+.sidebar .recent-entry:hover {
+  background-color: #e2e6eb;
+}
+
+/* BOTTOM */
+.sidebar .bottom {
+  display: flex;
+  flex-direction: column;
+}
+
+/* TEXT ANIMATION (Gemini style) */
+.sidebar .text {
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  white-space: nowrap;
+}
+
+/* SHOW TEXT WHEN EXPANDED */
+.sidebar.extended .text {
+  opacity: 1;
+  transform: translateX(0);
 }
