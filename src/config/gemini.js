@@ -1,13 +1,11 @@
-// geminiChat.js
 import { GoogleGenAI } from "@google/genai";
 
 const ai = new GoogleGenAI({
-  apiKey: process.env.GEMINI_API_KEY,
+  apiKey: import.meta.env.VITE_GEMINI_API_KEY,
 });
 
-const model = "gemini-3-pro-preview";
+const model = "gemini-1.5-flash";
 
-// Create chat session
 export function createChat() {
   const contents = [];
 
@@ -22,13 +20,13 @@ export function createChat() {
       contents,
     });
 
-    const answer = response.text;
+    const text = response.text;
 
     contents.push({
       role: "model",
-      parts: [{ text: answer }],
+      parts: [{ text }],
     });
 
-    return answer;
+    return text;
   };
 }
