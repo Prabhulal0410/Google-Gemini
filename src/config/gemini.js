@@ -1,28 +1,29 @@
-import { GoogleGenAI } from "@google/genai";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
-const ai = new GoogleGenAI({
-  apiKey: import.meta.env.VITE_GEMINI_API_KEY,
+const genAI = new GoogleGenerativeAI(
+  import.meta.env.VITE_GEMINI_API_KEY
+);
+
+const model = genAI.getGenerativeModel({
+  model: "gemini-1.5-flash",
 });
 
-const model = "gemini-1.5-flash";
-
 export function createChat() {
-  const contents = [];
+  const history = [];
 
   return async function sendMessage(prompt) {
-    contents.push({
+    history.push({
       role: "user",
       parts: [{ text: prompt }],
     });
 
-    const response = await ai.models.generateContent({
-      model,
-      contents,
+    const result = await model.generateContent({
+      contents: history,
     });
 
-    const text = response.text;
+    const text = result.response.text();
 
-    contents.push({
+    history.push({
       role: "model",
       parts: [{ text }],
     });

@@ -1,45 +1,28 @@
-import { createContext } from "react";
+import { createContext, useEffect, useRef } from "react";
+import { createChat } from "../config/gemini";
 
 export const Context = createContext();
 
 const ContextProvider = ({ children }) => {
+  const chatRef = useRef(null);
+
+  if (!chatRef.current) {
+    chatRef.current = createChat();
+  }
 
   const askGemini = async (prompt) => {
     try {
-      const API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
-
-      const res = await fetch(
-        `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${API_KEY}`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            contents: [
-              {
-                role: "user",
-                parts: [{ text: prompt }],
-              },
-            ],
-          }),
-        }
-      );
-
-      const data = await res.json();
-      console.log("RAW RESPONSE:", data);
-
-      const answer =
-        data.candidates?.[0]?.content?.parts?.[0]?.text;
-
+      const answer = await chatRef.current(prompt);
       console.log("AI:", answer);
-    } catch (error) {
-      console.error("Gemini error:", error);
+      return answer;
+    } catch (err) {
+      console.error("Gemini error:", err);
     }
   };
 
-  // test
-  askGemini("what is react?");
+  useEffect(() => {
+    askGemini("What is React?");
+  }, []);
 
   return (
     <Context.Provider value={{ askGemini }}>
