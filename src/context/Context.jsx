@@ -1,28 +1,20 @@
-import { createContext, useEffect, useRef } from "react";
-import { createChat } from "../config/gemini";
+import { createContext } from "react";
 
 export const Context = createContext();
 
 const ContextProvider = ({ children }) => {
-  const chatRef = useRef(null);
-
-  if (!chatRef.current) {
-    chatRef.current = createChat();
-  }
-
   const askGemini = async (prompt) => {
-    try {
-      const answer = await chatRef.current(prompt);
-      console.log("AI:", answer);
-      return answer;
-    } catch (err) {
-      console.error("Gemini error:", err);
-    }
-  };
+    const res = await fetch("/api/chat", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ prompt }),
+    });
 
-  useEffect(() => {
-    askGemini("What is React?");
-  }, []);
+    const data = await res.json();
+    return data.reply;
+  };
 
   return (
     <Context.Provider value={{ askGemini }}>
