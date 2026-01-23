@@ -13,18 +13,13 @@ const ContextProvider = ({ children }) => {
         body: JSON.stringify({ prompt }),
       });
 
-      // Handle API errors safely
-      if (!res.ok) {
-        const errorText = await res.text();
-        console.error("API Error:", res.status, errorText);
-        throw new Error("Gemini API failed");
-      }
+      if (!res.ok) throw new Error("API Error");
 
       const data = await res.json();
       return data.reply;
     } catch (error) {
-      console.error("askGemini error:", error);
-      return "⚠️ Unable to get response from Gemini right now.";
+      console.error(error);
+      return "⚠️ Gemini is unavailable right now.";
     }
   };
 

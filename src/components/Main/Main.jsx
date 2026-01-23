@@ -5,17 +5,29 @@ import { Context } from "../../context/Context";
 
 const Main = () => {
   const { askGemini } = useContext(Context);
+
   const [input, setInput] = useState("");
+  const [messages, setMessages] = useState([]);
 
   const handleSend = async () => {
     if (!input.trim()) return;
 
-    console.log("You:", input);
+    const userMessage = {
+      role: "user",
+      text: input,
+    };
+
+    setMessages((prev) => [...prev, userMessage]);
+    setInput("");
 
     const reply = await askGemini(input);
-    console.log("Gemini:", reply);
 
-    setInput("");
+    const botMessage = {
+      role: "bot",
+      text: reply,
+    };
+
+    setMessages((prev) => [...prev, botMessage]);
   };
 
   const handleKeyDown = (e) => {
@@ -26,41 +38,76 @@ const Main = () => {
 
   return (
     <div className="main">
+      {/* NAVBAR */}
       <div className="nav">
         <p>Gemini</p>
-        <img src={assets.user_icon} alt="" />
+        <img src={assets.user_icon} alt="User" />
       </div>
 
       <div className="main-container">
-        <div className="greet">
-          <p>
-            <span>Hello, Dev</span>
-          </p>
-          <p>How can i help you today ?</p>
+        {/* SHOW GREETING ONLY WHEN NO CHAT */}
+        {messages.length === 0 && (
+          <>
+            <div className="greet">
+              <p>
+                <span>Hello, Dev</span>
+              </p>
+              <p>How can I help you today?</p>
+            </div>
+
+            <div className="cards">
+              <div
+                className="card"
+                onClick={() => setInput("Suggest beautiful places in the world")}
+              >
+                <p>Suggest beautiful places in the world</p>
+                <img src={assets.compass_icon} alt="" />
+              </div>
+
+              <div
+                className="card"
+                onClick={() =>
+                  setInput("Briefly summarize array in JavaScript")
+                }
+              >
+                <p>Briefly summarize this topic : array</p>
+                <img src={assets.bulb_icon} alt="" />
+              </div>
+
+              <div
+                className="card"
+                onClick={() => setInput("Improve my code readability")}
+              >
+                <p>Improve my code readability</p>
+                <img src={assets.message_icon} alt="" />
+              </div>
+
+              <div
+                className="card"
+                onClick={() => setInput("Suggest some places")}
+              >
+                <p>Suggest some places</p>
+                <img src={assets.code_icon} alt="" />
+              </div>
+            </div>
+          </>
+        )}
+
+        {/* CHAT AREA */}
+        <div className="chat-area">
+          {messages.map((msg, index) => (
+            <div
+              key={index}
+              className={
+                msg.role === "user" ? "chat-user" : "chat-bot"
+              }
+            >
+              {msg.text}
+            </div>
+          ))}
         </div>
 
-        <div className="cards">
-          <div className="card" onClick={() => setInput("Suggest beautiful places in the world")}>
-            <p>Suggest beautiful places in the world</p>
-            <img src={assets.compass_icon} alt="" />
-          </div>
-
-          <div className="card" onClick={() => setInput("Briefly summarize array in JavaScript")}>
-            <p>Briefly summarize this topic : array</p>
-            <img src={assets.bulb_icon} alt="" />
-          </div>
-
-          <div className="card" onClick={() => setInput("Improve my code readability")}>
-            <p>Improve my code readability</p>
-            <img src={assets.message_icon} alt="" />
-          </div>
-
-          <div className="card" onClick={() => setInput("Suggest some places")}>
-            <p>Suggest some places</p>
-            <img src={assets.code_icon} alt="" />
-          </div>
-        </div>
-
+        {/* INPUT AREA */}
         <div className="main-bottom">
           <div className="search-box">
             <input
@@ -75,7 +122,7 @@ const Main = () => {
               <img src={assets.mic_icon} alt="" />
               <img
                 src={assets.send_icon}
-                alt=""
+                alt="Send"
                 onClick={handleSend}
                 style={{ cursor: "pointer" }}
               />
