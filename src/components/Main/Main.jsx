@@ -2,6 +2,8 @@ import React, { useContext, useState } from "react";
 import { assets } from "../../assets/assets";
 import "./Main.css";
 import { Context } from "../../context/Context";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 const Main = () => {
   const { askGemini } = useContext(Context);
@@ -58,7 +60,9 @@ const Main = () => {
             <div className="cards">
               <div
                 className="card"
-                onClick={() => setInput("Suggest beautiful places in the world")}
+                onClick={() =>
+                  setInput("Suggest beautiful places in the world")
+                }
               >
                 <p>Suggest beautiful places in the world</p>
                 <img src={assets.compass_icon} alt="" />
@@ -98,11 +102,11 @@ const Main = () => {
           {messages.map((msg, index) => (
             <div
               key={index}
-              className={
-                msg.role === "user" ? "chat-user" : "chat-bot"
-              }
+              className={msg.role === "user" ? "chat-user" : "chat-bot"}
             >
-              {msg.text}
+              <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                {msg.text}
+              </ReactMarkdown>
             </div>
           ))}
         </div>
