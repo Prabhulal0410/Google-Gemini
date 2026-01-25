@@ -2,7 +2,7 @@
   flex: 1;
   min-height: 100vh;
   position: relative;
-  padding-bottom: 0; /* FIX: remove forced space */
+  padding-bottom: 0;
   display: flex;
   flex-direction: column;
 }
@@ -21,7 +21,7 @@
   border-radius: 50%;
 }
 
-/* CENTER CONTENT WITH SIDE PADDING */
+/* CENTER CONTENT */
 .container-wrapper {
   flex: 1;
   display: flex;
@@ -46,7 +46,7 @@
 }
 
 .main .greet span {
-  background: -webkit-linear-gradient(16deg, #4b90ff, #ff5546);
+  background: -webkit-linear-gradient(16deg, #7a7a7a, #b0b0b0);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -62,7 +62,7 @@
 .main .card {
   height: 200px;
   padding: 15px;
-  background-color: #f0f4f9;
+  background-color: #f2f3f5;
   border-radius: 10px;
   position: relative;
   cursor: pointer;
@@ -84,7 +84,7 @@
 }
 
 .main .card:hover {
-  background-color: #dfe4ea;
+  background-color: #e6e7e9;
 }
 
 /* CHAT */
@@ -94,30 +94,50 @@
   overflow-y: auto;
 }
 
+/* USER MESSAGE – LIGHT GEMINI STYLE */
 .chat-user {
   max-width: 70%;
   margin-left: auto;
   margin-bottom: 12px;
-  background: #0b5cff;
-  color: white;
-  padding: 12px 16px;
-  border-radius: 18px;
+
+  background: #e9eaec;
+
+  color: #202124;
+  padding: 12px 18px;
+  border-radius: 18px 18px 4px 18px;
+
+  font-size: 15px;
+  line-height: 1.6;
+
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
 }
 
+.chat-user p {
+  margin: 0;
+}
+
+/* BOT MESSAGE – SAME LIGHT GEMINI STYLE */
 .chat-bot {
   max-width: 70%;
   margin-right: auto;
   margin-bottom: 12px;
-  background: #f1f1f1;
-  color: #000;
-  padding: 12px 16px;
-  border-radius: 18px;
+
+  background: #f1f3f4;
+
+  color: #202124;
+  padding: 12px 18px;
+  border-radius: 18px 18px 18px 4px;
+
+  font-size: 15px;
+  line-height: 1.6;
+
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
 }
 
 /* INPUT AREA */
 .main-bottom {
   width: 100%;
-  padding: 8px 0 8px;
+  padding: 8px 0;
 }
 
 .search-box {
@@ -125,7 +145,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 20px;
-  background-color: #f0f4f9;
+  background-color: #f1f3f4;
   padding: 10px 20px;
   border-radius: 50px;
 }
@@ -155,17 +175,19 @@
   margin-top: 8px;
   text-align: center;
   font-weight: 400;
+  color: #5f6368;
 }
+
 /* ===============================
    Gemini-style Skeleton Loader
    =============================== */
 
 .chat-bot.skeleton {
   background: transparent;
+  box-shadow: none;
   padding: 12px 14px;
 }
 
-/* Skeleton lines */
 .skeleton-line {
   height: 14px;
   width: 100%;
@@ -173,21 +195,19 @@
   border-radius: 8px;
   background: linear-gradient(
     100deg,
-    #e6e6e6 30%,
+    #e0e0e0 30%,
     #f5f5f5 45%,
-    #e6e6e6 60%
+    #e0e0e0 60%
   );
   background-size: 200% 100%;
   animation: geminiShimmer 1.2s ease-in-out infinite;
 }
 
-/* Short last line like Gemini */
 .skeleton-line.short {
   width: 55%;
   margin-bottom: 0;
 }
 
-/* Smooth shimmer animation */
 @keyframes geminiShimmer {
   0% {
     background-position: 200% 0;
@@ -196,4 +216,3 @@
     background-position: -200% 0;
   }
 }
-
