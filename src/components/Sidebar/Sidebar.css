@@ -60,6 +60,7 @@
   border-radius: 50px;
   cursor: pointer;
 }
+
 /* Hide message icon when sidebar is collapsed */
 .sidebar:not(.extended) .recent .recent-entry img {
   display: none;
@@ -75,7 +76,7 @@
   flex-direction: column;
 }
 
-/* TEXT ANIMATION (Gemini style) */
+/* TEXT ANIMATION */
 .sidebar .text {
   opacity: 0;
   transform: translateX(-10px);
@@ -83,8 +84,51 @@
   white-space: nowrap;
 }
 
-/* SHOW TEXT WHEN EXPANDED */
 .sidebar.extended .text {
   opacity: 1;
   transform: translateX(0);
 }
+
+/* ===============================
+   MOBILE RESPONSIVE (ADDED)
+   =============================== */
+
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    height: 100vh;
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar {
+    width: 60px;
+    padding: 15px 10px;
+  }
+
+  .sidebar.extended {
+    width: 220px;
+  }
+}
+/* ===============================
+   MOBILE SIDEBAR DRAWER
+   =============================== */
+
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: -260px; /* hidden by default */
+    height: 100vh;
+    z-index: 999;
+    transition: left 0.3s ease;
+  }
+
+  .sidebar.extended {
+    left: 0;
+  }
+}
+

@@ -60,6 +60,17 @@ const Main = () => {
     <div className="main">
       {/* NAVBAR */}
       <div className="nav">
+
+        {/* 🔥 MOBILE HAMBURGER (ADDED) */}
+        <img
+          src={assets.menu_icon}
+          alt="menu"
+          className="mobile-menu"
+          onClick={() =>
+            document.querySelector(".sidebar")?.classList.toggle("extended")
+          }
+        />
+
         <p>Gemini</p>
         <img src={assets.user_icon} alt="User" />
       </div>
@@ -112,7 +123,6 @@ const Main = () => {
               </div>
             ))}
 
-            {/* LOADING SKELETON */}
             {loading && (
               <div className="chat-bot skeleton">
                 <div className="skeleton-line"></div>

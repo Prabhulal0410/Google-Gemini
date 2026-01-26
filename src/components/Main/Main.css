@@ -94,21 +94,17 @@
   overflow-y: auto;
 }
 
-/* USER MESSAGE – LIGHT GEMINI STYLE */
+/* USER MESSAGE */
 .chat-user {
   max-width: 70%;
   margin-left: auto;
   margin-bottom: 12px;
-
   background: #e9eaec;
-
   color: #202124;
   padding: 12px 18px;
   border-radius: 18px 18px 4px 18px;
-
   font-size: 15px;
   line-height: 1.6;
-
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
 }
 
@@ -116,25 +112,21 @@
   margin: 0;
 }
 
-/* BOT MESSAGE – SAME LIGHT GEMINI STYLE */
+/* BOT MESSAGE */
 .chat-bot {
   max-width: 70%;
   margin-right: auto;
   margin-bottom: 12px;
-
   background: #f1f3f4;
-
   color: #202124;
   padding: 12px 18px;
   border-radius: 18px 18px 18px 4px;
-
   font-size: 15px;
   line-height: 1.6;
-
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
 }
 
-/* INPUT AREA */
+/* INPUT */
 .main-bottom {
   width: 100%;
   padding: 8px 0;
@@ -179,40 +171,115 @@
 }
 
 /* ===============================
-   Gemini-style Skeleton Loader
+   MOBILE RESPONSIVE (ADDED)
    =============================== */
 
-.chat-bot.skeleton {
-  background: transparent;
-  box-shadow: none;
-  padding: 12px 14px;
-}
-
-.skeleton-line {
-  height: 14px;
-  width: 100%;
-  margin-bottom: 10px;
-  border-radius: 8px;
-  background: linear-gradient(
-    100deg,
-    #e0e0e0 30%,
-    #f5f5f5 45%,
-    #e0e0e0 60%
-  );
-  background-size: 200% 100%;
-  animation: geminiShimmer 1.2s ease-in-out infinite;
-}
-
-.skeleton-line.short {
-  width: 55%;
-  margin-bottom: 0;
-}
-
-@keyframes geminiShimmer {
-  0% {
-    background-position: 200% 0;
+@media (max-width: 768px) {
+  .main .nav {
+    font-size: 18px;
+    padding: 12px;
   }
-  100% {
-    background-position: -200% 0;
+
+  .main .greet {
+    font-size: 34px;
+    padding: 10px;
+    margin: 20px 0;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .chat-user,
+  .chat-bot {
+    max-width: 90%;
+    font-size: 14px;
+  }
+
+  .search-box {
+    padding: 8px 15px;
+  }
+
+  .search-box input {
+    font-size: 16px;
   }
 }
+
+@media (max-width: 480px) {
+  .container-wrapper {
+    padding: 0 10px;
+  }
+
+  .main .greet {
+    font-size: 28px;
+  }
+
+  .main-bottom {
+    padding-bottom: 10px;
+  }
+}
+/* ===============================
+   MOBILE UI CLEANUP
+   =============================== */
+
+@media (max-width: 768px) {
+  /* Remove cards on mobile */
+  .main .cards {
+    display: none;
+  }
+
+  /* Reduce greeting size */
+  .main .greet {
+    font-size: 26px;
+    margin: 10px 0;
+  }
+
+  /* Chat full width */
+  .chat-user,
+  .chat-bot {
+    max-width: 95%;
+  }
+
+  /* Reduce nav padding */
+  .main .nav {
+    padding: 10px 12px;
+  }
+}
+/* ===============================
+   MOBILE ONLY FIXES
+   =============================== */
+
+.mobile-menu {
+  display: none;
+  width: 26px;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .mobile-menu {
+    display: block;
+  }
+
+  /* Remove cards on mobile */
+  .main .cards {
+    display: none;
+  }
+
+  /* Clean greeting */
+  .main .greet {
+    font-size: 26px;
+    margin: 10px 0;
+  }
+
+  /* Full width chat */
+  .chat-user,
+  .chat-bot {
+    max-width: 95%;
+  }
+
+  .main .nav {
+    padding: 10px 12px;
+    gap: 10px;
+  }
+}
+
