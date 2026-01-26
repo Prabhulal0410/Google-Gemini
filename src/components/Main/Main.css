@@ -7,6 +7,8 @@
   flex-direction: column;
 }
 
+/* ================= NAVBAR ================= */
+
 .main .nav {
   display: flex;
   align-items: center;
@@ -17,11 +19,19 @@
 }
 
 .main .nav img {
-  width: 40px;
+  width: 30px;
   border-radius: 50%;
 }
 
-/* CENTER CONTENT */
+/* Mobile hamburger */
+.mobile-menu {
+  display: none;
+  width: 26px;
+  cursor: pointer;
+}
+
+/* ================= CENTER CONTENT ================= */
+
 .container-wrapper {
   flex: 1;
   display: flex;
@@ -36,7 +46,8 @@
   flex-direction: column;
 }
 
-/* GREETING */
+/* ================= GREETING ================= */
+
 .main .greet {
   margin: 30px 0;
   font-size: 56px;
@@ -51,7 +62,8 @@
   -webkit-text-fill-color: transparent;
 }
 
-/* CARDS */
+/* ================= CARDS ================= */
+
 .main .cards {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
@@ -87,14 +99,14 @@
   background-color: #e6e7e9;
 }
 
-/* CHAT */
+/* ================= CHAT ================= */
+
 .chat-area {
   flex: 1;
   padding: 10px;
   overflow-y: auto;
 }
 
-/* USER MESSAGE */
 .chat-user {
   max-width: 70%;
   margin-left: auto;
@@ -112,7 +124,6 @@
   margin: 0;
 }
 
-/* BOT MESSAGE */
 .chat-bot {
   max-width: 70%;
   margin-right: auto;
@@ -126,7 +137,8 @@
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
 }
 
-/* INPUT */
+/* ================= INPUT ================= */
+
 .main-bottom {
   width: 100%;
   padding: 8px 0;
@@ -135,20 +147,15 @@
 .search-box {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 20px;
+  gap: 15px;
   background-color: #f1f3f4;
   padding: 10px 20px;
   border-radius: 50px;
 }
 
-.search-box img {
-  width: 24px;
-  cursor: pointer;
-}
-
 .search-box input {
   flex: 1;
+  min-width: 0;
   background: transparent;
   border: none;
   outline: none;
@@ -159,7 +166,13 @@
 .search-box div {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 14px;
+}
+
+.search-box img {
+  width: 24px;
+  cursor: pointer;
+  flex-shrink: 0;
 }
 
 .main .bottom-info {
@@ -170,34 +183,40 @@
   color: #5f6368;
 }
 
-/* ===============================
-   MOBILE RESPONSIVE (ADDED)
-   =============================== */
+/* =================================================
+   MOBILE (<= 768px)
+   ================================================= */
 
 @media (max-width: 768px) {
+  .mobile-menu {
+    display: block;
+  }
+
   .main .nav {
     font-size: 18px;
-    padding: 12px;
+    padding: 10px 12px;
+    gap: 10px;
   }
 
   .main .greet {
-    font-size: 34px;
+    font-size: 26px;
     padding: 10px;
-    margin: 20px 0;
+    margin: 10px 0;
   }
 
-  .cards {
-    grid-template-columns: 1fr;
+  /* Hide cards on mobile */
+  .main .cards {
+    display: none;
   }
 
   .chat-user,
   .chat-bot {
-    max-width: 90%;
+    max-width: 95%;
     font-size: 14px;
   }
 
   .search-box {
-    padding: 8px 15px;
+    padding: 8px 14px;
   }
 
   .search-box input {
@@ -205,81 +224,34 @@
   }
 }
 
-@media (max-width: 480px) {
-  .container-wrapper {
-    padding: 0 10px;
-  }
+/* =================================================
+   VERY SMALL SCREENS (<= 375px)
+   ================================================= */
 
-  .main .greet {
-    font-size: 28px;
-  }
-
-  .main-bottom {
-    padding-bottom: 10px;
-  }
-}
-/* ===============================
-   MOBILE UI CLEANUP
-   =============================== */
-
-@media (max-width: 768px) {
-  /* Remove cards on mobile */
-  .main .cards {
-    display: none;
-  }
-
-  /* Reduce greeting size */
-  .main .greet {
-    font-size: 26px;
-    margin: 10px 0;
-  }
-
-  /* Chat full width */
-  .chat-user,
-  .chat-bot {
-    max-width: 95%;
-  }
-
-  /* Reduce nav padding */
+@media (max-width: 375px) {
   .main .nav {
-    padding: 10px 12px;
-  }
-}
-/* ===============================
-   MOBILE ONLY FIXES
-   =============================== */
-
-.mobile-menu {
-  display: none;
-  width: 26px;
-  cursor: pointer;
-}
-
-@media (max-width: 768px) {
-  .mobile-menu {
-    display: block;
+    font-size: 16px;
   }
 
-  /* Remove cards on mobile */
-  .main .cards {
-    display: none;
-  }
-
-  /* Clean greeting */
   .main .greet {
-    font-size: 26px;
-    margin: 10px 0;
+    font-size: 22px;
   }
 
-  /* Full width chat */
-  .chat-user,
-  .chat-bot {
-    max-width: 95%;
-  }
-
-  .main .nav {
-    padding: 10px 12px;
+  .search-box {
     gap: 10px;
+    padding: 6px 12px;
+  }
+
+  .search-box input {
+    font-size: 14px;
+    padding: 6px;
+  }
+
+  .search-box img {
+    width: 20px;
+  }
+
+  .main .bottom-info {
+    font-size: 11px;
   }
 }
-

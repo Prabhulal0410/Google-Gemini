@@ -1,3 +1,7 @@
+/* ===============================
+   SIDEBAR BASE
+   =============================== */
+
 .sidebar {
   width: 70px;
   min-height: 100vh;
@@ -6,11 +10,11 @@
   justify-content: space-between;
   background-color: #f0f4f9;
   padding: 25px 15px;
-  transition: width 0.3s ease;
   overflow: hidden;
+  transition: width 0.3s ease, left 0.35s ease;
 }
 
-/* EXPANDED */
+/* EXPANDED DESKTOP */
 .sidebar.extended {
   width: 250px;
 }
@@ -47,8 +51,7 @@
 }
 
 .sidebar .recent-title {
-  margin-top: 30px;
-  margin-bottom: 20px;
+  margin: 30px 0 20px;
 }
 
 /* ITEMS */
@@ -61,13 +64,13 @@
   cursor: pointer;
 }
 
-/* Hide message icon when sidebar is collapsed */
-.sidebar:not(.extended) .recent .recent-entry img {
-  display: none;
-}
-
 .sidebar .recent-entry:hover {
   background-color: #e2e6eb;
+}
+
+/* Hide icons when collapsed */
+.sidebar:not(.extended) .recent-entry img {
+  display: none;
 }
 
 /* BOTTOM */
@@ -80,7 +83,7 @@
 .sidebar .text {
   opacity: 0;
   transform: translateX(-10px);
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  transition: opacity 0.25s ease, transform 0.25s ease;
   white-space: nowrap;
 }
 
@@ -90,41 +93,18 @@
 }
 
 /* ===============================
-   MOBILE RESPONSIVE (ADDED)
-   =============================== */
-
-@media (max-width: 768px) {
-  .sidebar {
-    position: fixed;
-    z-index: 100;
-    left: 0;
-    top: 0;
-    height: 100vh;
-  }
-}
-
-@media (max-width: 480px) {
-  .sidebar {
-    width: 60px;
-    padding: 15px 10px;
-  }
-
-  .sidebar.extended {
-    width: 220px;
-  }
-}
-/* ===============================
-   MOBILE SIDEBAR DRAWER
+   MOBILE DRAWER MODE
    =============================== */
 
 @media (max-width: 768px) {
   .sidebar {
     position: fixed;
     top: 0;
-    left: -260px; /* hidden by default */
+    left: -260px;
     height: 100vh;
+    width: 240px;
     z-index: 999;
-    transition: left 0.3s ease;
+    box-shadow: 4px 0 12px rgba(0, 0, 0, 0.12);
   }
 
   .sidebar.extended {
@@ -132,3 +112,27 @@
   }
 }
 
+/* ===============================
+   SMALL MOBILE (≤375px)
+   =============================== */
+
+@media (max-width: 375px) {
+  .sidebar {
+    width: 210px;
+    padding: 18px 12px;
+  }
+
+  .sidebar .new-chat {
+    font-size: 13px;
+    padding: 8px 10px;
+  }
+
+  .sidebar img {
+    width: 22px;
+  }
+
+  .sidebar .recent-entry {
+    padding: 8px 6px;
+    font-size: 13px;
+  }
+}
