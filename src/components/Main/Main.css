@@ -1,13 +1,21 @@
+/* =========================
+   MAIN LAYOUT
+   ========================= */
+
 .main {
   flex: 1;
   min-height: 100vh;
+  height: 100vh;
   position: relative;
   padding-bottom: 0;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
-/* ================= NAVBAR ================= */
+/* =========================
+   NAVBAR
+   ========================= */
 
 .main .nav {
   display: flex;
@@ -30,13 +38,16 @@
   cursor: pointer;
 }
 
-/* ================= CENTER CONTENT ================= */
+/* =========================
+   CENTER CONTENT
+   ========================= */
 
 .container-wrapper {
   flex: 1;
   display: flex;
   justify-content: center;
   padding: 0 20px;
+  overflow: hidden;
 }
 
 .main-container {
@@ -44,9 +55,14 @@
   max-width: 900px;
   display: flex;
   flex-direction: column;
+  flex: 1;
+  overflow: hidden;
+  height: calc(100vh - 80px); /* navbar height approx */
 }
 
-/* ================= GREETING ================= */
+/* =========================
+   GREETING
+   ========================= */
 
 .main .greet {
   margin: 30px 0;
@@ -62,7 +78,9 @@
   -webkit-text-fill-color: transparent;
 }
 
-/* ================= CARDS ================= */
+/* =========================
+   CARDS
+   ========================= */
 
 .main .cards {
   display: grid;
@@ -99,12 +117,15 @@
   background-color: #e6e7e9;
 }
 
-/* ================= CHAT ================= */
+/* =========================
+   CHAT AREA
+   ========================= */
 
 .chat-area {
   flex: 1;
   padding: 10px;
   overflow-y: auto;
+  scroll-behavior: smooth;
 }
 
 .chat-user {
@@ -137,7 +158,9 @@
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
 }
 
-/* ================= INPUT ================= */
+/* =========================
+   INPUT BOX
+   ========================= */
 
 .main-bottom {
   width: 100%;
@@ -183,90 +206,9 @@
   color: #5f6368;
 }
 
-/* =================================================
-   MOBILE (<= 768px)
-   ================================================= */
-
-@media (max-width: 768px) {
-  .mobile-menu {
-    display: block;
-  }
-
-  .main .nav {
-    font-size: 18px;
-    padding: 10px 12px;
-    gap: 10px;
-  }
-
-  .main .greet {
-    font-size: 26px;
-    padding: 10px;
-    margin: 10px 0;
-  }
-
-  .main .cards {
-    display: none;
-  }
-
-  .chat-user,
-  .chat-bot {
-    max-width: 95%;
-    font-size: 14px;
-  }
-
-  /* ✅ EXTRA SIDE PADDING FOR MOBILE */
-  .container-wrapper {
-    padding: 0 14px;
-  }
-
-  .search-box {
-    padding: 8px 14px;
-  }
-
-  .search-box input {
-    font-size: 16px;
-  }
-}
-
-/* =================================================
-   VERY SMALL SCREENS (<= 375px)
-   ================================================= */
-
-@media (max-width: 375px) {
-  .main .nav {
-    font-size: 16px;
-  }
-
-  .main .greet {
-    font-size: 22px;
-  }
-
-  .container-wrapper {
-    padding: 0 10px;
-  }
-
-  .search-box {
-    gap: 10px;
-    padding: 6px 12px;
-  }
-
-  .search-box input {
-    font-size: 14px;
-    padding: 6px;
-  }
-
-  .search-box img {
-    width: 20px;
-  }
-
-  .main .bottom-info {
-    font-size: 11px;
-  }
-}
-
-/* =================================================
-   ✅ SKELETON LOADING (ADDED – NOTHING REMOVED)
-   ================================================= */
+/* =========================
+   SKELETON LOADING
+   ========================= */
 
 .skeleton {
   width: 60%;
@@ -302,9 +244,105 @@
   }
 }
 
-/* Skeleton responsive */
+/* =========================
+   SCROLLBAR STYLE
+   ========================= */
+
+.chat-area::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+.chat-area::-webkit-scrollbar-thumb {
+  background: #c7c7c7;
+  border-radius: 10px;
+}
+
+.chat-area::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.chat-area {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
 @media (max-width: 768px) {
+  .mobile-menu {
+    display: block;
+  }
+
+  .main .nav {
+    font-size: 18px;
+    padding: 10px 12px;
+    gap: 10px;
+  }
+
+  .main .greet {
+    font-size: 26px;
+    padding: 10px;
+    margin: 10px 0;
+  }
+
+  .main .cards {
+    display: none;
+  }
+
+  .chat-user,
+  .chat-bot {
+    max-width: 95%;
+    font-size: 14px;
+  }
+
+  .container-wrapper {
+    padding: 0 14px;
+  }
+
+  .search-box {
+    padding: 8px 14px;
+  }
+
+  .search-box input {
+    font-size: 16px;
+  }
+
   .skeleton {
     width: 90%;
+  }
+}
+
+@media (max-width: 375px) {
+  .main .nav {
+    font-size: 16px;
+  }
+
+  .main .greet {
+    font-size: 22px;
+  }
+
+  .container-wrapper {
+    padding: 0 10px;
+  }
+
+  .search-box {
+    gap: 10px;
+    padding: 6px 12px;
+  }
+
+  .search-box input {
+    font-size: 14px;
+    padding: 6px;
+  }
+
+  .search-box img {
+    width: 20px;
+  }
+
+  .main .bottom-info {
+    font-size: 11px;
   }
 }
