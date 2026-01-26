@@ -136,3 +136,45 @@
     font-size: 13px;
   }
 }
+
+/* =================================================
+   FIX SIDEBAR & MAIN SCROLL (ADDED ONLY)
+   ================================================= */
+
+/* Desktop sidebar fixed */
+@media (min-width: 769px) {
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+  }
+
+  /* Push main content right of sidebar */
+  .main {
+    margin-left: 70px;
+  }
+
+  /* When sidebar expanded */
+  .sidebar.extended ~ .main {
+    margin-left: 250px;
+  }
+}
+
+/* Main should scroll, not body */
+.main {
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Chat area handles scrolling */
+.chat-area {
+  overflow-y: auto;
+  flex: 1;
+}
+
+/* Prevent sidebar scrolling */
+.sidebar {
+  overflow: hidden;
+}
+

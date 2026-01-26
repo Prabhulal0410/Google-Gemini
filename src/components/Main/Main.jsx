@@ -13,10 +13,19 @@ const Main = () => {
   const [loading, setLoading] = useState(false);
 
   const chatEndRef = useRef(null);
+  const chatAreaRef = useRef(null); // ✅ ADDED
 
-  // Auto scroll to bottom
+  // ✅ SMART AUTO SCROLL (Gemini / ChatGPT style)
   useEffect(() => {
-    chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    const chat = chatAreaRef.current;
+    if (!chat) return;
+
+    const isNearBottom =
+      chat.scrollHeight - chat.scrollTop - chat.clientHeight < 120;
+
+    if (isNearBottom) {
+      chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    }
   }, [messages, loading]);
 
   const handleSend = async () => {
@@ -60,8 +69,7 @@ const Main = () => {
     <div className="main">
       {/* NAVBAR */}
       <div className="nav">
-
-        {/* 🔥 MOBILE HAMBURGER (ADDED) */}
+        {/* MOBILE HAMBURGER */}
         <img
           src={assets.menu_icon}
           alt="menu"
@@ -77,32 +85,49 @@ const Main = () => {
 
       <div className="container-wrapper">
         <div className="main-container">
-
           {/* GREETING */}
           {messages.length === 0 && (
             <>
               <div className="greet">
-                <p><span>Hello, Dev</span></p>
+                <p>
+                  <span>Hello, Dev</span>
+                </p>
                 <p>How can I help you today?</p>
               </div>
 
               <div className="cards">
-                <div className="card" onClick={() => setInput("Suggest beautiful places in the world")}>
+                <div
+                  className="card"
+                  onClick={() =>
+                    setInput("Suggest beautiful places in the world")
+                  }
+                >
                   <p>Suggest beautiful places in the world</p>
                   <img src={assets.compass_icon} alt="" />
                 </div>
 
-                <div className="card" onClick={() => setInput("Briefly summarize array in JavaScript")}>
+                <div
+                  className="card"
+                  onClick={() =>
+                    setInput("Briefly summarize array in JavaScript")
+                  }
+                >
                   <p>Briefly summarize this topic : array</p>
                   <img src={assets.bulb_icon} alt="" />
                 </div>
 
-                <div className="card" onClick={() => setInput("Improve my code readability")}>
+                <div
+                  className="card"
+                  onClick={() => setInput("Improve my code readability")}
+                >
                   <p>Improve my code readability</p>
                   <img src={assets.message_icon} alt="" />
                 </div>
 
-                <div className="card" onClick={() => setInput("Suggest some places")}>
+                <div
+                  className="card"
+                  onClick={() => setInput("Suggest some places")}
+                >
                   <p>Suggest some places</p>
                   <img src={assets.code_icon} alt="" />
                 </div>
@@ -111,7 +136,7 @@ const Main = () => {
           )}
 
           {/* CHAT */}
-          <div className="chat-area">
+          <div className="chat-area" ref={chatAreaRef}>
             {messages.map((msg, index) => (
               <div
                 key={index}
@@ -164,7 +189,6 @@ const Main = () => {
               Gemini can make mistakes, so double-check it
             </p>
           </div>
-
         </div>
       </div>
     </div>
