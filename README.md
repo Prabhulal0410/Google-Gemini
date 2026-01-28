@@ -56,4 +56,4 @@ This project serves as an AI-based chat platform to explore real-world API integ
 - npm Package Management
 
 ---
-
+## ✨ **Thank you for taking the time to review my portfolio project.**
