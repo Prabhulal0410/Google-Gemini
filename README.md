@@ -1,16 +1,59 @@
-# React + Vite
+# 🚀 Google Gemini AI API Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, responsive AI-powered web application inspired by Google Gemini’s interface. The application integrates the **Google Gemini API** to provide real-time AI responses with a clean, smooth, and mobile-friendly user experience.
 
-Currently, two official plugins are available:
+🔗 **Live Demo:** https://google-gemini-ai-api.vercel.app/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## 📌 Overview
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+This project serves as an AI-based chat platform to explore real-world API integration and frontend development best practices. It focuses on building a modern Gemini-inspired UI while ensuring responsiveness, performance, and usability across all devices.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## ✨ **Key Features**
+
+- 🤖 **Real-time AI responses powered by Google Gemini API**
+- 📱 **Fully responsive, mobile-first design**
+- 🎨 **Gemini-inspired clean and modern user interface**
+- ⚡ **Fast and optimized performance using Vite**
+- 💬 **Smooth chat interface with dynamic message rendering**
+- 🚀 **Deployed live on Vercel**
+
+---
+
+## 🛠️ **Tech Stack**
+
+- ⚛️ **React.js** – Component-based frontend development  
+- ⚡ **Vite** – Fast build tool for modern web applications  
+- 🤖 **Google Gemini API** – AI integration for intelligent chat responses  
+- 🚀 **Vercel** – Deployment and hosting platform  
+
+---
+
+## 🧠 **Skills**
+
+### **Frontend Development**
+- HTML5, CSS3, JavaScript (ES6+)
+- React.js Component-Based Architecture
+- Responsive Web Design
+- Single Page Applications (SPA)
+
+### **Styling & UI**
+- CSS Flexbox & Grid
+- Mobile-First Design
+- Cross-Device Compatibility
+
+### **AI Integration**
+- Google Gemini API Implementation
+- Handling AI Responses Dynamically
+- Building AI-Powered Interfaces
+
+### **Tools & Platforms**
+- Git & GitHub
+- Vercel Deployment
+- npm Package Management
+
+---
+
