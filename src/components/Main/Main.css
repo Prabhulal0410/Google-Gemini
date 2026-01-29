@@ -126,7 +126,6 @@
   padding: 10px;
   overflow-y: auto;
   scroll-behavior: smooth;
-  padding-bottom: 110px; 
 }
 
 .chat-user {
@@ -348,3 +347,19 @@
     font-size: 11px;
   }
 }
+
+/* 🔥 FLEX HEIGHT FIX — DO NOT REMOVE OLD CSS */
+
+.main-container {
+  min-height: 0; /* IMPORTANT */
+}
+
+.chat-area {
+  min-height: 0; /* IMPORTANT */
+  padding-bottom: 12px;
+}
+
+.main-bottom {
+  flex-shrink: 0;
+}
+

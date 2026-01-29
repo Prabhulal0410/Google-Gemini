@@ -13,9 +13,9 @@ const Main = () => {
   const [loading, setLoading] = useState(false);
 
   const chatEndRef = useRef(null);
-  const chatAreaRef = useRef(null); // ✅ ADDED
+  const chatAreaRef = useRef(null);
 
-  // ✅ SMART AUTO SCROLL (Gemini / ChatGPT style)
+  // ✅ EXISTING SMART AUTO SCROLL (UNCHANGED)
   useEffect(() => {
     const chat = chatAreaRef.current;
     if (!chat) return;
@@ -27,6 +27,15 @@ const Main = () => {
       chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
     }
   }, [messages, loading]);
+
+  // 🔥 ADDITIONAL FORCE SCROLL (ONLY FOR SKELETON)
+  useEffect(() => {
+    if (loading) {
+      requestAnimationFrame(() => {
+        chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
+      });
+    }
+  }, [loading]);
 
   const handleSend = async () => {
     if (!input.trim() || loading) return;
@@ -67,9 +76,7 @@ const Main = () => {
 
   return (
     <div className="main">
-      {/* NAVBAR */}
       <div className="nav">
-        {/* MOBILE HAMBURGER */}
         <img
           src={assets.menu_icon}
           alt="menu"
@@ -78,14 +85,12 @@ const Main = () => {
             document.querySelector(".sidebar")?.classList.toggle("extended")
           }
         />
-
         <p>Gemini</p>
         <img src={assets.user_icon} alt="User" />
       </div>
 
       <div className="container-wrapper">
         <div className="main-container">
-          {/* GREETING */}
           {messages.length === 0 && (
             <>
               <div className="greet">
@@ -96,38 +101,22 @@ const Main = () => {
               </div>
 
               <div className="cards">
-                <div
-                  className="card"
-                  onClick={() =>
-                    setInput("Suggest beautiful places in the world")
-                  }
-                >
+                <div className="card" onClick={() => setInput("Suggest beautiful places in the world")}>
                   <p>Suggest beautiful places in the world</p>
                   <img src={assets.compass_icon} alt="" />
                 </div>
 
-                <div
-                  className="card"
-                  onClick={() =>
-                    setInput("Briefly summarize array in JavaScript")
-                  }
-                >
+                <div className="card" onClick={() => setInput("Briefly summarize array in JavaScript")}>
                   <p>Briefly summarize this topic : array</p>
                   <img src={assets.bulb_icon} alt="" />
                 </div>
 
-                <div
-                  className="card"
-                  onClick={() => setInput("Improve my code readability")}
-                >
+                <div className="card" onClick={() => setInput("Improve my code readability")}>
                   <p>Improve my code readability</p>
                   <img src={assets.message_icon} alt="" />
                 </div>
 
-                <div
-                  className="card"
-                  onClick={() => setInput("Suggest some places")}
-                >
+                <div className="card" onClick={() => setInput("Suggest some places")}>
                   <p>Suggest some places</p>
                   <img src={assets.code_icon} alt="" />
                 </div>
@@ -135,13 +124,9 @@ const Main = () => {
             </>
           )}
 
-          {/* CHAT */}
           <div className="chat-area" ref={chatAreaRef}>
             {messages.map((msg, index) => (
-              <div
-                key={index}
-                className={msg.role === "user" ? "chat-user" : "chat-bot"}
-              >
+              <div key={index} className={msg.role === "user" ? "chat-user" : "chat-bot"}>
                 <ReactMarkdown remarkPlugins={[remarkGfm]}>
                   {msg.text}
                 </ReactMarkdown>
@@ -159,7 +144,6 @@ const Main = () => {
             <div ref={chatEndRef}></div>
           </div>
 
-          {/* INPUT */}
           <div className="main-bottom">
             <div className="search-box">
               <input
@@ -173,15 +157,7 @@ const Main = () => {
               <div>
                 <img src={assets.gallery_icon} alt="" />
                 <img src={assets.mic_icon} alt="" />
-                <img
-                  src={assets.send_icon}
-                  alt="Send"
-                  onClick={handleSend}
-                  style={{
-                    opacity: loading ? 0.5 : 1,
-                    cursor: loading ? "not-allowed" : "pointer",
-                  }}
-                />
+                <img src={assets.send_icon} alt="Send" onClick={handleSend} />
               </div>
             </div>
 
