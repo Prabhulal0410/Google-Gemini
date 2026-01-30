@@ -159,12 +159,12 @@
 }
 
 /* =========================
-   INPUT BOX
+  INPUT BOX
    ========================= */
 
 .main-bottom {
   width: 100%;
-  padding: 8px 0 2px 0;
+  padding: 8px 0 1px 0;
 }
 
 .search-box {
