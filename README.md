@@ -2,7 +2,7 @@
 
 A modern, responsive AI-powered web application inspired by Google Gemini’s interface. The application integrates the **Google Gemini API** to provide real-time AI responses with a clean, smooth, and mobile-friendly user experience.
 
-🔗 **Live Demo:** https://google-gemini-ai-api.vercel.app/
+🔗 **Live Demo:-** https://google-gemini-ai-api.vercel.app/
 
 ---
 
