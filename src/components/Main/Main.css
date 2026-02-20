@@ -225,13 +225,13 @@
   background: linear-gradient(
     90deg,
     #e0f0ff 0%,      /* light blue */
-    #f3e8ff 25%,     /* light purple */
-    #ffd6f5 50%,     /* soft pink */
+    rgb(243, 232, 255) 30%,     /* light purple */
+    rgb(255, 214, 245) 55%,     /* soft pink */
     #f3e8ff 75%,     /* purple */
     #e0f0ff 100%     /* blue */
   );
   background-size: 300% 100%;
-  animation: shimmer 1.6s infinite linear;
+  animation: shimmer 1.7s infinite linear;
 }
 
 .skeleton-line.short {
